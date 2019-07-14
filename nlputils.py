@@ -47,7 +47,7 @@ def split_wiki(path,lang,encoding='utf-8'):
             if len(title)>150: continue
             if f: f.close()
             f = (dest/f'{title}.txt').open('w', encoding=encoding)
+        elif l.startswith('</doc>'): continue
         else: f.write(l)
     f.close()
     return dest
-
