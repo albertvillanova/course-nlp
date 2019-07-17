@@ -18,7 +18,9 @@ def get_wiki(path,lang):
         bunzip(path/zip_fn)
 
     with working_directory(path):
-        if not (path/'wikiextractor').exists(): os.system('git clone https://github.com/attardi/wikiextractor.git')
+        # if not (path/'wikiextractor').exists(): os.system('git clone https://github.com/attardi/wikiextractor.git')
+        git_clone = 'git clone --single-branch -b fix https://github.com/albertvillanova/wikiextractor.git'
+        if not (path / 'wikiextractor').exists(): os.system(git_clone)
         print("extracting...")
         os.system("python wikiextractor/WikiExtractor.py --processes 4 --no_templates " +
             f"--min_text_length 1800 --filter_disambig_pages --log_file log -b 100G -q {xml_fn}")
